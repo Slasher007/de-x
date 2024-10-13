@@ -1,3 +1,33 @@
+# de-x-replies.py
+
+**de-x-replies.py** is a Python script designed to delete all of your replies on Twitter without requiring access to the official Twitter API. The script leverages session headers from an authenticated Twitter session to delete only the replies from your tweet history, leaving your original tweets untouched.
+
+## Features
+
+- **Delete Replies Only**: This script identifies and deletes only replies, based on the `in_reply_to_status_id_str` field in Twitter's tweet data.
+- **No Twitter API Required**: The script works by using session request headers, so no need for API keys or tokens.
+- **Simple and Automated**: Provide the script with a JSON file of your tweet data and a file with request headers, and it will handle the rest.
+
+## How It Works
+
+1. **Input Files**:
+   - **Tweet Data (JSON)**: A file that contains your tweet history, typically exported from Twitter or captured via a web session.
+   - **Request Headers**: A file containing the session headers captured from your authenticated Twitter session (this can be done via browser developer tools).
+
+2. **Deletion Process**:
+   - The script scans the tweet data for replies (identified by the `in_reply_to_status_id_str` field being non-null).
+   - For each reply found, the script sends a delete request to Twitter's GraphQL API.
+
+## Usage
+
+### Prerequisites
+
+- **Python 3.x** installed on your system.
+- **requests** library installed. You can install it using `pip`:
+  ```bash
+  pip install requests
+
+
 # de-x.py
 
 **This script can be used to delete the whole history of your tweets, retweets and replies.**
